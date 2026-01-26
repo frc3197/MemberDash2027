@@ -221,16 +221,16 @@ export default function Dashboard() {
         if (!confirm('Are you sure you wish to clock IN?'))
             return;
 
-        //setIsScannerOpen(true);
+        setIsScannerOpen(true);
 
 
-        /*
+        
 
         try {
             const { data, error } = await supabase
                 .from('time_entries')
                 .insert({
-                    member_id: memberData.id,
+                    member_id: memberData?.id ?? '-1',
                     clock_in_time: new Date().toISOString(),
                 });
 
@@ -245,7 +245,7 @@ export default function Dashboard() {
         } catch (err) {
             console.error('Error clocking in:', err);
         }
-            */
+            
     };
 
     const handleClockOut = async () => {
