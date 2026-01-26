@@ -30,7 +30,7 @@ export default function Dashboard() {
 
     const [showQRCode, setShowQRCode] = useState<boolean>(false);
 
-    const selfClockIn = false;
+    const selfClockIn = true;
 
     useEffect(() => {
         fetchData();
