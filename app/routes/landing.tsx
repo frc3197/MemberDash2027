@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import { supabase } from "public/supabase";
 import type { Database } from "database.types";
 
 export default function Home() {
 
-  const navigate = useNavigate();
   const [memberNames, setMemberNames] = useState<Database['public']['Tables']['members']['Row'][]>([]);
   const [selectedMember, setSelectedMember] = useState<string | null>(null);
 
@@ -25,18 +23,18 @@ export default function Home() {
     if (selectedMember) {
 
       if(selectedMember == 'ADMIN') {
-        navigate("/admin");
+        window.location.assign(`${import.meta.env.BASE_URL}admin`);
         return;
       }
 
       if(selectedMember == 'SCANNER') {
-        navigate("/scan");
+        window.location.assign(`${import.meta.env.BASE_URL}scan`);
         return;
       }
 
       sessionStorage.setItem('currentMember', selectedMember);
       console.log(selectedMember);
-      navigate("/dashboard");
+      window.location.assign(`${import.meta.env.BASE_URL}dashboard`);
     } else {
       alert('Please select your name first');
     }
