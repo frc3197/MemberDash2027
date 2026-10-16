@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { supabase } from "public/supabase";
 import type { Database } from "database.types";
 
 export default function Home() {
 
+  const navigate = useNavigate();
   const [memberNames, setMemberNames] = useState<Database['public']['Tables']['members']['Row'][]>([]);
   const [selectedMember, setSelectedMember] = useState<string | null>(null);
 
@@ -23,18 +25,18 @@ export default function Home() {
     if (selectedMember) {
 
       if(selectedMember == 'ADMIN') {
-        window.open(`/admin`, '_self');
+        navigate("/admin");
         return;
       }
 
       if(selectedMember == 'SCANNER') {
-        window.open(`/scan`, '_self');
+        navigate("/scan");
         return;
       }
 
       sessionStorage.setItem('currentMember', selectedMember);
       console.log(selectedMember);
-      window.open(`/dashboard`, '_self');
+      navigate("/dashboard");
     } else {
       alert('Please select your name first');
     }
@@ -44,7 +46,7 @@ export default function Home() {
     <div className="relative h-[100dvh]">
       <img
         className="h-[100dvh] brightness-50 w-full object-cover fixed top-0 inset-0 z-0"
-        src="./landing.jpg"
+        src={`${import.meta.env.BASE_URL}landing.jpg`}
         alt="Landing background"
       />
 
@@ -62,7 +64,7 @@ export default function Home() {
         <div className="mb-12">
           <img
             className="h-24 w-32 drop-shadow-2xl hover:scale-105 transition-transform duration-300"
-            src="./icon.png"
+            src={`${import.meta.env.BASE_URL}icon.png`}
             alt="Hexhound logo"
           />
         </div>

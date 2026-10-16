@@ -5,6 +5,7 @@ import { ADMIN_PASSWORD, supabase } from "public/supabase";
 import type { WeekHourLog } from "public/types";
 import { getWeeksSince } from "public/util";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router";
 import html2canvas from 'html2canvas-pro';
 import { ResponsiveContainer, CartesianGrid, XAxis, YAxis, Tooltip, Line, LineChart } from "recharts";
 import JsBarcode from "jsbarcode";
@@ -355,7 +356,7 @@ export default function Admin() {
         <div className="relative h-[100dvh] text-white max-h-screen">
             <img
                 className="h-[100dvh] brightness-25 w-full object-cover fixed top-0 inset-0 z-1 select-none"
-                src="./admin.jpg"
+                src={`${import.meta.env.BASE_URL}admin.jpg`}
                 alt="Admin background"
             />
 
@@ -369,7 +370,7 @@ export default function Admin() {
             {true && (
                 <div className='fixed md:hidden inset-0 z-50 bg-black/90 flex flex-col justify-center items-center gap-5'>
                     <h2 className='text-2xl text-white font-bold mx-5'>This page requires a larger screen to visit. Try using a laptop.</h2>
-                    <a href="/" className="text-orange-400">Return Home</a>
+                    <Link to="/" className="text-orange-400">Return Home</Link>
                 </div>
             )}
 
@@ -463,7 +464,9 @@ export default function Admin() {
                     <h1 className="font-bold text-4xl transform hover:translate-x-5 transition duration-350">Admin Dashboard</h1>
                     <div className="flex flex-row items-center gap-8">
                         <RefreshCcw onClick={fetchData} className="transition cursor-pointer hover:scale-120" size={32} />
-                        <Home onClick={() => window.open('/', '_self')} className="transition cursor-pointer hover:scale-120" size={32} />
+                        <Link to="/" aria-label="Return home">
+                            <Home className="transition cursor-pointer hover:scale-120" size={32} />
+                        </Link>
                     </div>
                 </div>
 
@@ -699,7 +702,7 @@ export default function Admin() {
                         </div>
                         <div className="absolute right-2 bottom-1 flex justify-center">
                             <img
-                                src={`/logo.png`}
+                                src={`${import.meta.env.BASE_URL}logo.png`}
                                 alt="Logo"
                                 className="w-[130px] object-contain"
                             />

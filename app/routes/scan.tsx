@@ -2,6 +2,7 @@ import { Home, RefreshCcw } from "lucide-react";
 import Html5QrcodePlugin from "public/html5QrcodePlugin";
 import { supabase } from "public/supabase";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import positiveSound from 'public/sounds/applepay.mp3';
 import failedSound from 'public/sounds/apple-pay-failed.mp3';
 
@@ -136,7 +137,7 @@ export default function Scan() {
         <div className="relative h-[100dvh] text-white">
             <img
                 className="h-[100dvh] brightness-25 w-full object-cover fixed top-0 inset-0 z-1 select-none"
-                src="./scan.jpg"
+                src={`${import.meta.env.BASE_URL}scan.jpg`}
                 alt="Scan background"
             />
 
@@ -167,7 +168,7 @@ export default function Scan() {
             {true && (
                 <div className='fixed md:hidden inset-0 z-50 bg-black/90 flex flex-col justify-center items-center gap-5'>
                     <h2 className='text-2xl text-white font-bold mx-5'>This page requires a larger screen to visit. Try using a laptop.</h2>
-                    <a href="/" className="text-orange-400">Return Home</a>
+                    <Link to="/" className="text-orange-400">Return Home</Link>
                 </div>
             )}
 
@@ -176,7 +177,9 @@ export default function Scan() {
                     <h1 className="font-bold text-4xl transform hover:translate-x-5 transition duration-350">Card Scanner</h1>
                     <div className="flex flex-row items-center gap-8">
                         <RefreshCcw onClick={fetchData} className="transition cursor-pointer hover:scale-120" size={32} />
-                        <Home onClick={() => window.open('/', '_self')} className="transition cursor-pointer hover:scale-120" size={32} />
+                        <Link to="/" aria-label="Return home">
+                            <Home className="transition cursor-pointer hover:scale-120" size={32} />
+                        </Link>
                     </div>
                 </div>
                 <div className="grid grid-cols-2">
@@ -202,7 +205,7 @@ export default function Scan() {
                         <div className="h-[250px] w-[250px] rounded-md bg-white">
                             <img
                                 className="h-full w-full object-cover rounded-md z-1 select-none"
-                                src="./page-code.png"
+                                src={`${import.meta.env.BASE_URL}page-code.png`}
                                 alt="Scan background"
                             />
                         </div>

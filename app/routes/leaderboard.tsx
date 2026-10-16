@@ -15,7 +15,7 @@ const Leaderboard = () => {
         <div className="relative h-[100dvh] text-white max-h-screen">
             <img
                 className="h-[100dvh] brightness-25 w-full object-cover fixed top-0 inset-0 z-1 select-none"
-                src="./admin.jpg"
+                src={`${import.meta.env.BASE_URL}admin.jpg`}
                 alt="Admin background"
             />
 
